@@ -2,7 +2,7 @@
   <div class="tw-relative" data-model-selector>
     <button
       @click="$emit('toggle-dropdown')"
-      class="tw-flex tw-items-center tw-gap-2 tw-px-3 tw-py-2 tw-text-base tw-rounded-lg tw-bg-transparent tw-text-[#0d0d0d] dark:tw-text-[#f7f7f8] hover:tw-bg-[#f5f5f5] dark:hover:tw-bg-[#2a2a2a] tw-transition tw-duration-200 tw-min-w-[180px] tw-justify-between tw-font-semibold"
+      class="tw-flex tw-items-center tw-gap-2 tw-px-3 tw-py-2 tw-text-lg tw-rounded-lg tw-bg-transparent tw-text-[#0d0d0d] dark:tw-text-[#f7f7f8] hover:tw-bg-[#f5f5f5] dark:hover:tw-bg-[#2a2a2a] tw-transition tw-duration-200 tw-min-w-[180px] tw-justify-between tw-font-normal"
     >
       <div class="tw-flex tw-items-center tw-gap-2">
         <span class="tw-font-medium tw-text-[#0d0d0d] dark:tw-text-[#f7f7f8]">ChatGPT</span>

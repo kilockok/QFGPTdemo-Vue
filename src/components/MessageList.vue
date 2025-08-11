@@ -18,10 +18,66 @@
         </div>
         
         <!-- GPT回复格式 -->
-        <div v-else-if="m.role === 'assistant'" class="tw-flex tw-w-full tw-flex-col tw-gap-1 empty:tw-hidden first:tw-pt-[3px]">
+        <div v-else-if="m.role === 'assistant'" class="tw-flex tw-w-full tw-flex-col tw-gap-1 empty:tw-hidden first:tw-pt-[3px] tw-group/turn-messages">
           <div class="tw-prose dark:tw-prose-invert tw-w-full tw-break-words">
             <div v-html="renderMarkdown(m.content)"></div>
             <span v-if="shouldShowCursor(idx, m.role)" class="blink-caret"></span>
+          </div>
+          
+          <!-- 操作按钮栏 -->
+          <div class="tw-flex tw-min-h-[46px] tw-justify-start" v-if="!shouldShowCursor(idx, m.role)">
+            <div class="tw--ms-2.5 tw--me-1 tw-flex tw-flex-wrap tw-items-center tw-gap-y-4 tw-p-1 tw-select-none tw--mt-1 tw-w-[calc(100%+10px)] tw-duration-[1.5s] focus-within:tw-transition-none hover:tw-transition-none tw-pointer-events-none [mask-image:linear-gradient(to_right,black_33%,transparent_66%)] [mask-size:300%_100%] [mask-position:100%_0%] motion-safe:tw-transition-[mask-position] group-hover/turn-messages:tw-pointer-events-auto group-hover/turn-messages:[mask-position:0_0] group-focus-within/turn-messages:tw-pointer-events-auto group-focus-within/turn-messages:[mask-position:0_0]">
+              
+              <!-- 复制按钮 -->
+              <button class="tw-text-gray-500 hover:tw-bg-gray-100 dark:tw-text-gray-400 dark:hover:tw-bg-gray-800 tw-rounded-lg tw-transition-colors" aria-label="复制" @click="copyMessage(m.content)">
+                <span class="tw-flex tw-h-8 tw-w-8 tw-items-center tw-justify-center">
+                  <img src="/icons/copy-icon.svg" alt="复制" class="tw-w-4 tw-h-4" />
+                </span>
+              </button>
+              
+              <!-- 点赞按钮 -->
+              <button class="tw-text-gray-500 hover:tw-bg-gray-100 dark:tw-text-gray-400 dark:hover:tw-bg-gray-800 tw-rounded-lg tw-transition-colors" aria-label="最佳回复">
+                <span class="tw-flex tw-h-8 tw-w-8 tw-items-center tw-justify-center">
+                  <img src="/icons/thumbs-up-icon.svg" alt="点赞" class="tw-w-4 tw-h-4" />
+                </span>
+              </button>
+              
+              <!-- 点踩按钮 -->
+              <button class="tw-text-gray-500 hover:tw-bg-gray-100 dark:tw-text-gray-400 dark:hover:tw-bg-gray-800 tw-rounded-lg tw-transition-colors" aria-label="错误回复">
+                <span class="tw-flex tw-h-8 tw-w-8 tw-items-center tw-justify-center">
+                  <img src="/icons/thumbs-down-icon.svg" alt="点踩" class="tw-w-4 tw-h-4" />
+                </span>
+              </button>
+              
+              <!-- 朗读按钮 -->
+              <button class="tw-text-gray-500 hover:tw-bg-gray-100 dark:tw-text-gray-400 dark:hover:tw-bg-gray-800 tw-rounded-lg tw-transition-colors" aria-label="朗读">
+                <span class="tw-flex tw-h-8 tw-w-8 tw-items-center tw-justify-center">
+                  <img src="/icons/audio-play-icon.svg" alt="朗读" class="tw-w-4 tw-h-4" />
+                </span>
+              </button>
+              
+              <!-- 编辑按钮 -->
+              <button class="tw-text-gray-500 hover:tw-bg-gray-100 dark:tw-text-gray-400 dark:hover:tw-bg-gray-800 tw-rounded-lg tw-transition-colors" aria-label="在画布中编辑">
+                <span class="tw-flex tw-h-8 tw-w-8 tw-items-center tw-justify-center">
+                  <img src="/icons/edit-canvas-icon.svg" alt="编辑" class="tw-w-4 tw-h-4" />
+                </span>
+              </button>
+              
+              <!-- 分享按钮 -->
+              <button class="tw-text-gray-500 hover:tw-bg-gray-100 dark:tw-text-gray-400 dark:hover:tw-bg-gray-800 tw-rounded-lg tw-transition-colors" aria-label="共享">
+                <span class="tw-flex tw-h-8 tw-w-8 tw-items-center tw-justify-center">
+                  <img src="/icons/share-icon.svg" alt="分享" class="tw-w-4 tw-h-4" />
+                </span>
+              </button>
+              
+              <!-- 刷新按钮 -->
+              <button class="tw-text-gray-500 hover:tw-bg-gray-100 dark:tw-text-gray-400 dark:hover:tw-bg-gray-800 tw-rounded-lg tw-transition-colors" aria-label="重新生成">
+                <span class="tw-flex tw-h-8 tw-w-8 tw-items-center tw-justify-center">
+                  <img src="/icons/refresh-icon.svg" alt="重新生成" class="tw-w-4 tw-h-4" />
+                </span>
+              </button>
+              
+            </div>
           </div>
         </div>
       </div>
@@ -67,6 +123,15 @@ function renderMarkdown(text: string) { return md.render(text) }
 const lastIndex = computed(() => props.messages.length - 1)
 function shouldShowCursor(idx: number, role: Message['role']) {
   return props.loading && idx === lastIndex.value && role === 'assistant'
+}
+
+function copyMessage(content: string) {
+  navigator.clipboard.writeText(content).then(() => {
+    // 可以添加复制成功的提示
+    console.log('消息已复制到剪贴板')
+  }).catch(err => {
+    console.error('复制失败:', err)
+  })
 }
 
 const rootEl = ref<HTMLElement | null>(null)

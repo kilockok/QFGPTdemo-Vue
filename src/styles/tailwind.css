@@ -2,13 +2,44 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --app-font: ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+/* 统一全局字体与字重（400），并禁止浏览器合成粗体 */
+@layer base {
+  :root {
+    --font-sans: ui-sans-serif, -apple-system, system-ui, "Segoe UI",
+      "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei UI",
+      "Noto Sans CJK SC", "Noto Sans CJK", "Helvetica Neue", Arial,
+      /* emoji 放在末尾，避免干扰西文/中文字体度量 */
+      "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji",
+      sans-serif;
+  }
+
+  html {
+    font-family: var(--font-sans);
+    font-weight: 400;
+    /* 不要合成粗体；如果没有 700 就别瞎补 */
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    height: 100%;
+  }
+
+  body {
+    font-family: inherit;
+    font-weight: inherit;
+    height: 100%;
+  }
+
+  #app {
+    height: 100%;
+  }
+
+  /* 覆盖 UA 与 Tailwind preflight 的粗体默认 */
+  b, strong,
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 400 !important;
+  }
 }
-
-html, body, #app { height: 100%; }
-
-body { font-family: var(--app-font); }
 
 /***** 基础样式（使用 tw- 前缀）*****/
 .tw-scrollbar::-webkit-scrollbar { width: 10px; height: 10px; }
