@@ -1,0 +1,19 @@
+# 忽略 Node.js 依赖
+node_modules/
+
+# 忽略打包输出
+dist/
+build/
+
+# 忽略临时文件
+*.log
+*.tmp
+*.bak
+
+# 忽略系统缓存
+.DS_Store
+Thumbs.db
+
+# 忽略环境配置
+.env
+.env.local
