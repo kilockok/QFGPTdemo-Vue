@@ -45,3 +45,259 @@
 .tw-scrollbar::-webkit-scrollbar { width: 10px; height: 10px; }
 .tw-scrollbar::-webkit-scrollbar-thumb { background-color: rgba(0,0,0,0.2); border-radius: 9999px; }
 .tw-scrollbar::-webkit-scrollbar-track { background-color: transparent; }
+
+/* Markdown代码块样式 */
+@media (min-width: 768px) {
+  .md\:tw-prose-base .code-block pre {
+    font-size: 0.875em;
+    line-height: 1.7142857;
+    margin-top: 0em;
+    margin-bottom: 0em;
+    border-radius: 0rem;
+    padding-top: 0.8571429em;
+    padding-inline-end: 1.1428571em;
+    padding-bottom: 0.8571429em;
+    padding-inline-start: 1.1428571em;
+  }
+}
+
+/* hljs语法高亮颜色样式 */
+/* 亮色模式 */
+.code-block pre.hljs {
+  color: #383a42 !important;
+  background-color: rgb(249,249,249) !important;
+}
+
+/* 浅色模式语法高亮 */
+.code-block pre.hljs .hljs-attr { color: rgb(152, 104, 1) !important; }
+.code-block pre.hljs .hljs-built_in { color: rgb(193, 132, 1) !important; }
+.code-block pre.hljs .hljs-comment { color: rgb(160, 161, 167) !important; font-style: italic !important; }
+.code-block pre.hljs .hljs-function { color: rgb(56, 58, 66) !important; }
+.code-block pre.hljs .hljs-keyword { color: rgb(166, 38, 164) !important; }
+.code-block pre.hljs .hljs-meta { color: rgb(64, 120, 242) !important; }
+.code-block pre.hljs .hljs-number { color: rgb(152, 104, 1) !important; }
+.code-block pre.hljs .hljs-params { color: rgb(56, 58, 66) !important; }
+.code-block pre.hljs .hljs-property { color: rgb(56, 58, 66) !important; }
+.code-block pre.hljs .hljs-punctuation { color: rgb(56, 58, 66) !important; }
+.code-block pre.hljs .hljs-string { color: rgb(80, 161, 79) !important; }
+.code-block pre.hljs .hljs-title { color: rgb(64, 120, 242) !important; }
+.code-block pre.hljs .hljs-type { color: rgb(152, 104, 1) !important; }
+.code-block pre.hljs .hljs-variable { color: rgb(152, 104, 1) !important; }
+.code-block pre.hljs .hljs-attribute { color: #50a14f !important; }
+.code-block pre.hljs .hljs-selector-tag { color: #e45649 !important; }
+
+
+
+
+/* 暗色模式语法高亮 */
+.dark .code-block pre.hljs .hljs-built_in { color: rgb(233, 149, 12) !important; }
+.dark .code-block pre.hljs .hljs-comment { color: rgba(255, 255, 255, 0.5) !important; font-style: italic !important; }
+.dark .code-block pre.hljs .hljs-function { color: rgb(255, 255, 255) !important; }
+.dark .code-block pre.hljs .hljs-keyword { color: rgb(46, 149, 211) !important; }
+.dark .code-block pre.hljs .hljs-number { color: rgb(223, 48, 121) !important; }
+.dark .code-block pre.hljs .hljs-params { color: rgb(255, 255, 255) !important; }
+.dark .code-block pre.hljs .hljs-property { color: rgb(255, 255, 255) !important; }
+.dark .code-block pre.hljs .hljs-selector-attr { color: rgb(223, 48, 121) !important; }
+.dark .code-block pre.hljs .hljs-selector-class { color: rgb(223, 48, 121) !important; }
+.dark .code-block pre.hljs .hljs-string { color: rgb(0, 166, 125) !important; }
+.dark .code-block pre.hljs .hljs-subst { color: rgb(0, 166, 125) !important; }
+.dark .code-block pre.hljs .hljs-title { color: rgb(242, 44, 61) !important; }
+.dark .code-block pre.hljs .hljs-variable { color: rgb(223, 48, 121) !important; }
+.dark .code-block pre.hljs .hljs-attribute { color: #00a67d !important; }
+.dark .code-block pre.hljs .hljs-selector-tag { color: #fff !important; }
+
+/* 代码块头部样式 */
+.code-block > div:first-child {
+  background-color: rgb(249,249,249) !important;
+}
+
+/* 暗色模式 */
+.dark .code-block pre.hljs {
+  color: #fff !important;
+  background-color: rgb(23,23,23) !important;
+}
+
+.dark .code-block > div:first-child {
+  background-color: rgb(23,23,23) !important;
+}
+
+/* 复制按钮样式 */
+.code-block .copy-btn {
+  color: rgb(93, 93, 93) !important;
+}
+
+.code-block .copy-btn svg {
+  stroke: rgb(93, 93, 93) !important;
+}
+
+.code-block .copy-btn span {
+  color: rgb(93, 93, 93) !important;
+}
+
+/* 语言标签样式 */
+.code-block .tw-font-medium {
+  color: rgb(93, 93, 93) !important;
+}
+
+/* 语言标签暗色 */
+.dark .code-block .tw-font-medium {
+  color: rgb(243, 243, 243) !important;
+}
+
+/* 复制按钮暗色 */
+.dark .code-block .copy-btn {
+  color: rgb(243, 243, 243) !important;
+}
+
+.dark .code-block .copy-btn svg {
+  stroke: rgb(243, 243, 243) !important;
+}
+
+.dark .code-block .copy-btn span {
+  color: rgb(243, 243, 243) !important;
+}
+
+/* 行内代码字体设置 */
+code, pre {
+  font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace !important;
+}
+
+/* 行内代码样式 - 亮色模式 */
+
+
+.tw-prose .markdown-content[data-v-2c19ee48] code:not(pre code):not(pre code) {
+  background-color: #ececec !important;
+  border-radius: 0.25rem !important;
+  color: #0d0d0d !important;
+  font-size: 0.875em !important;
+  font-weight: 500 !important;
+  padding: 0.15rem 0.3rem !important;
+  margin: 0 0.2rem !important;
+  font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* 行内代码样式 - 暗色模式 */
+.dark .markdown-content code:not(pre code) {
+  background-color: #374151 !important;
+  color: #d1d5db !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Prose样式兼容 */
+.tw-prose {
+  --tw-prose-bullets: #5d5d5d;
+}
+
+.tw-prose code:not(pre code) {
+  background-color: #f3f4f6 !important;
+  border-radius: 0.25rem !important;
+  color: #374151 !important;
+  font-size: 0.875em !important;
+  font-weight: 500 !important;
+  padding: 0.15rem 0.3rem !important;
+  margin: 0 0.2rem !important;
+  font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.dark .tw-prose code:not(pre code) {
+  background-color: #374151 !important;
+  color: #d1d5db !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* 通用行内代码样式 */
+p code, li code, td code, th code, div code {
+  background-color: #f3f4f6 !important;
+  border-radius: 0.25rem !important;
+  color: #374151 !important;
+  font-size: 0.875em !important;
+  font-weight: 500 !important;
+  padding: 0.15rem 0.3rem !important;
+  margin: 0 0.2rem !important;
+  font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.dark p code, .dark li code, .dark td code, .dark th code, .dark div code {
+  background-color: #374151 !important;
+  color: #d1d5db !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* 新聊天按钮样式 */
+.__menu-item {
+  @apply tw-flex tw-items-center tw-justify-between tw-px-3 tw-py-2.5 tw-text-sm tw-text-[#0d0d0d] dark:tw-text-[#ececf1] tw-rounded-lg tw-transition tw-duration-0 tw-no-underline;
+}
+
+.__menu-item.hoverable:hover {
+  @apply tw-bg-[#ececf1] dark:tw-bg-[#2a2a2a];
+}
+
+.__menu-item .icon {
+  @apply tw-w-4 tw-h-4;
+}
+
+.__menu-item .trailing {
+  @apply tw-text-xs tw-text-[#6b7280] dark:tw-text-[#9ca3af] tw-opacity-0 tw-transition tw-duration-0;
+}
+
+.__menu-item:hover .trailing {
+  @apply tw-opacity-100;
+}
+
+/* 操作按钮栏样式 */
+.action-buttons-container {
+  --thread-content-max-width: 32rem;
+  --thread-content-margin: calc(var(--spacing) * 4);
+  --composer-overlap-px: 28px;
+  --text-base: 1rem;
+  --text-base--line-height: 1.5;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.25;
+  --text-primary: var(--tw-prose-body);
+  --border-light: currentColor;
+  --bg-primary: #ffffff;
+  --scrollbar-color: #d1d5db;
+  
+  display: flex;
+  justify-content: flex-start;
+  min-height: 46px;
+  font-size: var(--text-base);
+  line-height: var(--text-base--line-height);
+  color: var(--text-primary);
+}
+
+@container (min-width: 34rem) {
+  .action-buttons-container {
+    --thread-content-max-width: 40rem;
+  }
+}
+
+@container (min-width: 37rem) {
+  .action-buttons-container {
+    --thread-content-margin: calc(var(--spacing) * 6);
+  }
+}
+
+.action-buttons-container * {
+  border-color: var(--border-light, currentColor);
+  border: 0 solid;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* CSS变量定义 */
+:root {
+  --spacing: 0.25rem;
+  --text-sm: 0.875rem;
+  --menu-item-height: 2.5rem;
+}

@@ -1,56 +1,125 @@
 <template>
   <aside class="tw-hidden md:tw-flex tw-w-[260px] tw-flex-col tw-bg-[#f9f9f9] dark:tw-bg-[#171717] tw-fixed tw-inset-y-0 tw-left-0 tw-z-40 tw-border-r tw-border-[#e5e7eb] dark:tw-border-[#4d4d4f]" :class="{ 'tw-flex': sidebarOpen }">
     <!-- Logo区域 -->
-    <div class="tw-p-3">
-      <div class="tw-flex tw-items-center tw-justify-start">
-        <button class="tw-flex tw-items-center tw-justify-center tw-w-10 tw-h-10 tw-rounded-lg hover:tw-bg-[#ececf1] dark:hover:tw-bg-[#2a2a2a] tw-transition-all tw-duration-[50ms]">
+    <div class="touch:tw-px-1.5 tw-px-2">
+      <div id="sidebar-header" class="tw-h-header-height tw-flex tw-items-center tw-justify-between">
+        
+        <!-- 左侧 Logo 按钮 -->
+        <a aria-label="主页" class="text-token-text-primary no-draggable hover:bg-token-surface-hover focus-visible:bg-token-surface-hover touch:tw-h-10 touch:tw-w-10 tw-flex tw-h-9 tw-w-9 tw-items-center tw-justify-center tw-rounded-lg focus-visible:tw-outline-0 disabled:tw-opacity-50" href="/" data-discover="true" @click.prevent>
           <img src="/icons/gpt-logo.svg" alt="GPT Logo" class="tw-w-6 tw-h-6" />
-        </button>
+        </a>
+        
+        <!-- 右侧关闭按钮 -->
+        <div class="tw-flex">
+          <button class="no-draggable touch:h-10 touch:w-10 flex h-9 w-9 items-center justify-center rounded-lg focus-visible:outline-0 disabled:opacity-50 cursor-w-resize rtl:cursor-e-resize tw-transition tw-duration-200" style="color: rgb(143, 143, 143);" onmouseover="this.style.backgroundColor='rgba(143, 143, 143, 0.1)'" onmouseout="this.style.backgroundColor='transparent'" aria-expanded="true" aria-controls="stage-slideover-sidebar" aria-label="关闭边栏" data-testid="close-sidebar-button" data-state="closed" @click="$emit('toggle-sidebar')">
+            <img src="/icons/close-sidebar.svg" alt="关闭边栏" class="tw-w-4 tw-h-4" />
+          </button>
+        </div>
+        
       </div>
     </div>
 
     <!-- 功能菜单分区 -->
-    <div class="tw-px-3 tw-pb-4">
+    <aside class="tw-pt-5 last:tw-mb-5 tw-relative tw-pb-4 tw-bg-token-bg-elevated-secondary">
       <!-- 新对话按钮 -->
-      <button
-        class="tw-group tw-w-full tw-flex tw-items-center tw-justify-between tw-px-3 tw-py-2.5 tw-text-sm tw-text-[#0d0d0d] dark:tw-text-[#ececf1] hover:tw-bg-[#ececf1] dark:hover:tw-bg-[#2a2a2a] tw-rounded-lg tw-transition tw-duration-0 tw-mb-1"
-        @click="$emit('new-chat')"
-      >
-        <div class="tw-flex tw-items-center tw-gap-3">
-          <svg class="tw-w-4 tw-h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-          </svg>
-          新对话
+      <a tabindex="0" data-fill="" class="tw-group __menu-item hoverable" data-testid="create-new-chat-button" href="/" data-discover="true" @click.prevent="$emit('new-chat')">
+        <div class="tw-flex tw-min-w-0 tw-items-center tw-gap-1.5">
+          <div class="tw-flex tw-items-center tw-justify-center group-disabled:tw-opacity-50 group-data-disabled:tw-opacity-50 icon">
+            <img src="/icons/newchat.svg" alt="新聊天" class="tw-w-4 tw-h-4" />
+          </div>
+          <div class="tw-flex tw-min-w-0 tw-grow tw-items-center tw-gap-2.5 group-data-no-contents-gap:tw-gap-0">
+            <div class="tw-truncate">新聊天</div>
+          </div>
         </div>
-        <span class="tw-text-xs tw-text-[#6b7280] dark:tw-text-[#9ca3af] tw-opacity-0 group-hover:tw-opacity-100 tw-transition tw-duration-0">Ctrl + Shift + O</span>
-      </button>
-      
-      <!-- 功能菜单 -->
-      <div class="tw-space-y-1">
-        <button class="tw-w-full tw-flex tw-items-center tw-gap-3 tw-px-3 tw-py-2.5 tw-text-sm tw-text-[#0d0d0d] dark:tw-text-[#ececf1] hover:tw-bg-[#ececf1] dark:hover:tw-bg-[#2a2a2a] tw-rounded-lg tw-transition tw-duration-0">
-          <svg class="tw-w-4 tw-h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-          </svg>
-          搜索聊天
-        </button>
-        <button class="tw-w-full tw-flex tw-items-center tw-gap-3 tw-px-3 tw-py-2.5 tw-text-sm tw-text-[#0d0d0d] dark:tw-text-[#ececf1] hover:tw-bg-[#ececf1] dark:hover:tw-bg-[#2a2a2a] tw-rounded-lg tw-transition tw-duration-0">
+        <div class="trailing highlight text-token-text-tertiary">
+          <div class="touch:tw-hidden">
+            <div class="tw-inline-flex tw-whitespace-pre *:tw-inline-flex *:tw-font-sans *:not-last:after:tw-px-0.5 *:not-last:after:tw-content-['+']">
+              <kbd aria-label="控制"><span class="tw-min-w-[1em]">Ctrl</span></kbd>
+              <kbd aria-label="Shift"><span class="tw-min-w-[1em]">Shift</span></kbd>
+              <kbd><span class="tw-min-w-[1em]">O</span></kbd>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <!-- 搜索聊天按钮 -->
+      <div tabindex="0" data-fill="" class="tw-group __menu-item hoverable">
+        <div class="tw-flex tw-min-w-0 tw-items-center tw-gap-1.5">
+          <div class="tw-flex tw-items-center tw-justify-center group-disabled:tw-opacity-50 group-data-disabled:tw-opacity-50 icon">
+            <svg class="tw-w-4 tw-h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+          </div>
+          <div class="tw-flex tw-min-w-0 tw-grow tw-items-center tw-gap-2.5 group-data-no-contents-gap:tw-gap-0">
+            <div class="tw-truncate">搜索聊天</div>
+          </div>
+        </div>
+        <div class="trailing highlight text-token-text-tertiary">
+          <div class="touch:tw-hidden">
+            <div class="tw-inline-flex tw-whitespace-pre *:tw-inline-flex *:tw-font-sans *:not-last:after:tw-px-0.5 *:not-last:after:tw-content-['+']">
+              <kbd aria-label="控制"><span class="tw-min-w-[1em]">Ctrl</span></kbd>
+              <kbd><span class="tw-min-w-[1em]">K</span></kbd>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 库按钮 -->
+      <a tabindex="0" data-fill="" class="tw-group __menu-item hoverable tw-gap-1.5" data-testid="sidebar-item-library" href="/library" data-discover="true" @click.prevent>
+        <div class="tw-flex tw-items-center tw-justify-center group-disabled:tw-opacity-50 group-data-disabled:tw-opacity-50 icon">
           <svg class="tw-w-4 tw-h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
           </svg>
-          库
-        </button>
-      </div>
-    </div>
+        </div>
+        <div class="tw-flex tw-min-w-0 tw-grow tw-items-center tw-gap-2.5 group-data-no-contents-gap:tw-gap-0">
+          <div class="tw-truncate">库</div>
+        </div>
+      </a>
+    </aside>
     
     <!-- Codex分区 -->
-    <div class="tw-px-3 tw-pb-4">
-      <button class="tw-w-full tw-flex tw-items-center tw-gap-3 tw-px-3 tw-py-2.5 tw-text-sm tw-text-[#0d0d0d] dark:tw-text-[#ececf1] hover:tw-bg-[#ececf1] dark:hover:tw-bg-[#2a2a2a] tw-rounded-lg tw-transition tw-duration-0">
-        <svg class="tw-w-4 tw-h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
-        </svg>
-        Codex
-      </button>
-    </div>
+    <aside class="pt-(--sidebar-section-first-margin-top) last:tw-mb-5 tw-relative tw-pb-4 tw-bg-token-bg-elevated-secondary">
+      
+      <a tabindex="0" data-fill="" class="tw-group __menu-item hoverable" rel="noopener noreferrer" href="/codex" target="_blank" data-discover="true" @click.prevent>
+        <div class="tw-flex tw-min-w-0 tw-items-center tw-gap-1.5">
+          <div class="tw-flex tw-items-center tw-justify-center group-disabled:tw-opacity-50 group-data-disabled:tw-opacity-50 icon">
+            <svg class="tw-w-4 tw-h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+            </svg>
+          </div>
+          <div class="tw-flex tw-min-w-0 tw-grow tw-items-center tw-gap-2.5 group-data-no-contents-gap:tw-gap-0">
+            <div class="tw-truncate">Codex</div>
+          </div>
+        </div>
+        <div class="trailing highlight text-token-text-tertiary"></div>
+      </a>
+      
+      <a tabindex="0" data-fill="" class="tw-group __menu-item hoverable" rel="noopener noreferrer" id="sora" href="https://sora.chatgpt.com?utm_source=chatgpt" target="_blank" @click.prevent>
+        <div class="tw-flex tw-min-w-0 tw-items-center tw-gap-1.5">
+          <div class="tw-flex tw-items-center tw-justify-center group-disabled:tw-opacity-50 group-data-disabled:tw-opacity-50 icon">
+            <svg class="tw-w-4 tw-h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+            </svg>
+          </div>
+          <div class="tw-flex tw-min-w-0 tw-grow tw-items-center tw-gap-2.5 group-data-no-contents-gap:tw-gap-0">
+            <div class="tw-truncate">Sora</div>
+          </div>
+        </div>
+        <div class="trailing highlight text-token-text-tertiary"></div>
+      </a>
+      
+      <a tabindex="0" data-fill="" class="tw-group __menu-item hoverable tw-gap-1.5" data-testid="explore-gpts-button" href="/gpts" data-discover="true" @click.prevent>
+        <div class="tw-flex tw-items-center tw-justify-center group-disabled:tw-opacity-50 group-data-disabled:tw-opacity-50 icon">
+          <svg class="tw-w-4 tw-h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+          </svg>
+        </div>
+        <div class="tw-flex tw-min-w-0 tw-grow tw-items-center tw-gap-2.5 group-data-no-contents-gap:tw-gap-0">
+          <div class="tw-truncate">GPT</div>
+        </div>
+      </a>
+      
+    </aside>
     
     <!-- 聊天历史分区 -->
     <div class="tw-flex-1 tw-overflow-y-auto tw-px-3">
@@ -86,14 +155,14 @@
                     class="tw-flex-1 tw-bg-transparent tw-border-none tw-outline-none tw-text-sm tw-text-[#0d0d0d] dark:tw-text-[#ececf1]">
           </button>
           
-          <!-- 操作按钮（悬停显示） -->
-          <div class="tw-absolute tw-right-1 tw-top-1/2 tw-transform tw--translate-y-1/2 tw-opacity-0 group-hover:tw-opacity-100 tw-transition tw-duration-0 tw-flex tw-gap-1" v-if="conv.id === activeId">
-            <button @click.stop="$emit('start-edit-title', conv.id)" class="tw-p-1.5 tw-rounded tw-text-[#6b7280] dark:tw-text-[#9ca3af] hover:tw-bg-[#d1d5db] dark:hover:tw-bg-[#40414f] tw-transition tw-duration-0" title="编辑">
+          <!-- 操作按钮（一直显示） -->
+          <div class="tw-absolute tw-right-1 tw-top-1/2 tw-transform tw--translate-y-1/2 tw-opacity-100 tw-transition tw-duration-0 tw-flex tw-gap-1" v-if="conv.id === activeId">
+            <button @click.stop="$emit('start-edit-title', conv.id)" class="tw-p-1.5 tw-rounded tw-transition tw-duration-200" style="color: rgb(143, 143, 143);" onmouseover="this.style.backgroundColor='rgba(143, 143, 143, 0.1)'" onmouseout="this.style.backgroundColor='transparent'" title="编辑">
               <svg class="tw-w-4 tw-h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
               </svg>
             </button>
-            <button @click.stop="$emit('delete-conversation', conv.id)" class="tw-p-1.5 tw-rounded tw-text-[#6b7280] dark:tw-text-[#9ca3af] hover:tw-bg-[#d1d5db] dark:hover:tw-bg-[#40414f] tw-transition tw-duration-0" title="删除">
+            <button @click.stop="$emit('delete-conversation', conv.id)" class="tw-p-1.5 tw-rounded tw-transition tw-duration-200" style="color: rgb(143, 143, 143);" onmouseover="this.style.backgroundColor='rgba(143, 143, 143, 0.1)'" onmouseout="this.style.backgroundColor='transparent'" title="删除">
               <svg class="tw-w-4 tw-h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
               </svg>
@@ -113,7 +182,7 @@
           <div class="tw-text-sm tw-font-medium tw-text-[#0d0d0d] dark:tw-text-[#ececf1] tw-truncate">{{ userInfo.name }}</div>
           <div class="tw-text-xs tw-text-[#6b7280] dark:tw-text-[#9ca3af] tw-truncate">{{ userInfo.plan }}</div>
         </div>
-        <button @click.stop="$emit('show-user-menu')" class="tw-p-1 tw-rounded tw-text-[#6b7280] dark:tw-text-[#9ca3af] hover:tw-bg-[#d1d5db] dark:hover:tw-bg-[#40414f] tw-transition tw-duration-0">
+        <button @click.stop="$emit('show-user-menu')" class="tw-p-1 tw-rounded tw-transition tw-duration-200" style="color: rgb(143, 143, 143);" onmouseover="this.style.backgroundColor='rgba(143, 143, 143, 0.1)'" onmouseout="this.style.backgroundColor='transparent'">
           <svg class="tw-w-4 tw-h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path>
           </svg>
@@ -205,6 +274,7 @@ const emit = defineEmits<{
   'show-user-menu': []
   'show-settings': []
   'toggle-dark': []
+  'toggle-sidebar': []
   'update:editing-title': [value: string]
 }>()
 
@@ -227,3 +297,113 @@ onUnmounted(() => {
   document.removeEventListener('keydown', handleKeydown)
 })
 </script>
+
+<style scoped>
+/* 菜单项基础样式 */
+.__menu-item {
+  @apply tw-flex tw-items-center tw-justify-between tw-px-3 tw-py-2.5 tw-text-sm tw-text-[#0d0d0d] dark:tw-text-[#ececf1] tw-rounded-lg tw-transition tw-duration-0 tw-no-underline;
+}
+
+.__menu-item.hoverable:hover {
+  @apply tw-bg-[#ececf1] dark:tw-bg-[#2a2a2a];
+}
+
+/* Icon 容器样式 */
+.icon {
+  @apply tw-w-4 tw-h-4;
+}
+
+/* Trailing 元素样式 */
+.trailing {
+  @apply tw-text-xs tw-text-[#6b7280] dark:tw-text-[#9ca3af] tw-opacity-0 tw-transition tw-duration-0;
+}
+
+.__menu-item:hover .trailing {
+  @apply tw-opacity-100;
+}
+
+.highlight {
+  @apply tw-font-medium;
+}
+
+.text-token-text-tertiary {
+  @apply tw-text-[#6b7280] dark:tw-text-[#9ca3af];
+}
+
+.tw-bg-token-bg-elevated-secondary {
+  @apply tw-bg-transparent;
+}
+
+/* 键盘快捷键样式 */
+kbd {
+  @apply tw-inline-flex tw-items-center tw-justify-center tw-min-w-[1.5em] tw-h-5 tw-px-1 tw-text-xs tw-font-medium tw-bg-[#f3f4f6] dark:tw-bg-[#374151] tw-border tw-border-[#d1d5db] dark:tw-border-[#4b5563] tw-rounded tw-shadow-sm;
+}
+
+kbd span {
+  @apply tw-block;
+}
+
+/* Header 高度定义 */
+.tw-h-header-height {
+  @apply tw-h-12;
+}
+
+/* Token 颜色类 */
+.text-token-text-primary {
+  @apply tw-text-[#0d0d0d] dark:tw-text-[#f7f7f8];
+}
+
+.text-token-text-tertiary {
+  @apply tw-text-[#6b7280] dark:tw-text-[#9ca3af];
+}
+
+/* Token 表面悬停效果 */
+.hover\:bg-token-surface-hover:hover {
+  @apply tw-bg-[#f5f5f5] dark:tw-bg-[#2a2a2a];
+}
+
+.focus-visible\:bg-token-surface-hover:focus-visible {
+  @apply tw-bg-[#f5f5f5] dark:tw-bg-[#2a2a2a];
+}
+
+/* 禁用拖拽 */
+.no-draggable {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+}
+
+/* 光标样式 */
+.tw-cursor-w-resize {
+  cursor: w-resize;
+}
+
+.rtl\:tw-cursor-e-resize:dir(rtl) {
+  cursor: e-resize;
+}
+
+/* Sidebar 分区样式 */
+.pt-\(--sidebar-section-first-margin-top\) {
+  padding-top: var(--sidebar-section-first-margin-top, 0.75rem);
+}
+
+.last\:tw-mb-5:last-child {
+  @apply tw-mb-5;
+}
+
+/* 分组禁用状态 */
+.group-disabled\:tw-opacity-50:disabled {
+  @apply tw-opacity-50;
+}
+
+.group-data-disabled\:tw-opacity-50[data-disabled] {
+  @apply tw-opacity-50;
+}
+
+/* 分组内容间距 */
+.group-data-no-contents-gap\:tw-gap-0[data-no-contents-gap] {
+  @apply tw-gap-0;
+}
+</style>

@@ -15,7 +15,7 @@ export const theme = {
 
   // 模型选项（模拟 ChatGPT 下拉选择）
   models: [
-    { id: 'gpt-4o', name: 'GPT-4o', description: '我们最强的模型' },
+    { id: 'gpt-4o', name: '4o', description: '我们最强的模型' },
     { id: 'gpt-4o-mini', name: 'GPT-4o mini', description: '更快、更实惠的智能模型' },
     { id: 'gpt-3.5-turbo', name: 'GPT-3.5 Turbo', description: '快速、经济的模型' },
     { id: 'llama-3-8b', name: 'Llama 3 8B', description: '本地开源模型' },
@@ -23,7 +23,7 @@ export const theme = {
   ],
 
   // 深色模式
-  enableDarkMode: true,
+  enableDarkMode: false,
 
   // ChatGPT 精确配色
   colors: {
@@ -83,7 +83,6 @@ export const theme = {
   ],
   
   // 状态提示
-  loadingText: 'ChatGPT 正在输入...',
   errorPrefix: '抱歉，出现了一个错误：',
   retryText: '重新生成回答',
   stopText: '停止生成',

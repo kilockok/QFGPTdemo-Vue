@@ -2,6 +2,7 @@
   <div class="tw-flex tw-h-screen tw-bg-white dark:tw-bg-[#212121]">
     <!-- 侧边栏组件 -->
     <Sidebar
+      :active-id="activeId"
       :sidebar-open="sidebarOpen"
       :conversations="conversations"
       :active-conversation-id="activeId"
